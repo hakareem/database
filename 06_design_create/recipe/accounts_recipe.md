@@ -39,6 +39,7 @@ Usually, the Model class name will be the capitalised table name (single instead
 
 TRUNCATE TABLE accounts RESTART IDENTITY; 
 
+
 INSERT INTO accounts (username, email_address) VALUES ('wilder', 'wilder8@gmail.com');
 INSERT INTO accounts (username, email_address) VALUES ('tyson', 'tyson10@gmail.com');
 
@@ -68,7 +69,8 @@ Define the attributes of your Model class. You can usually map the table columns
 ```RUBY
 
 class Account
- attr_accessor :id, :username, :email_address
+attr_accessor :id, :username, :email_address
+
 end
 
 ```
@@ -136,13 +138,13 @@ end
   accounts.first.username # "wilder" 
   accounts.first.email_address #"wilder8@gmail.com" 
 
- # returns a single artist
+ # returns a single account
   repo = AccountRepository.new
-  artist = repo.find(1)
-  artist.username # "wilder" 
-  artist.email_address # "wilder8@gmail.com" 
+  account = repo.find(1)
+  account.username # "wilder" 
+  account.email_address # "wilder8@gmail.com" 
 
- # creates and adding a new artist record
+ # creates and adding a new account record
   repo = AccountRepository.new
   account = Account.new
   account.username = "Lop"
@@ -155,7 +157,7 @@ end
   added_account.email_address # "Lixies@gamail.com"
   added_account.username # "Lop"
 
-  # deletes an artist from the list
+  # deletes an account from the list
    repo = AccountRepository.new
    the_account = repo.find(1)
 
@@ -165,7 +167,7 @@ end
    all_accounts.length # 1
    all_accounts.first.username # "tyson"
 
- # "updates an artist information" 
+ # "updates an account information" 
    repo = AccountRepository.new
 
    account = repo.find(1)
@@ -195,7 +197,7 @@ end
 
 def reset_account_table
 seed_sql = File.read('spec/seeds_account.sql')
-connection = PG.connect({ host: '127.0.0.1', dbname: 'social_network_db' })
+connection = PG.connect({ host: '127.0.0.1', dbname: 'social_db_test' })
 connection.exec(seed_sql)
 end
 

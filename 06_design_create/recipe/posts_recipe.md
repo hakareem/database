@@ -152,6 +152,29 @@ end
   added_post.content # "1995"
   added_post.account_id # "7" 
 
+  # deletes a post from the list 
+   repo = PostRepository.new
+   the_post = repo.find(1)
+
+   repo.delete(the_post.title)
+
+   all_posts = repo.all
+   all_posts.length # 1
+   all_posts.first.title # "Slow" 
+
+ # updates an post information
+   repo = PostRepository.new
+
+   post = repo.find(1)
+
+   post.content = "apple pie"
+   post.title = "Jakie"
+
+   repo.update(post)
+   new_post = repo.find(1)
+
+   new_post.content # going there
+   new_post.title # Fly
 ```
 
 7. Reload the SQL seeds before each test run
@@ -167,7 +190,7 @@ end
 
 def reset_post_table
 seed_sql = File.read('spec/seeds_post.sql')
-connection = PG.connect({ host: '127.0.0.1', dbname: 'social_network_db' })
+connection = PG.connect({ host: '127.0.0.1', dbname: 'social_db_test' })
 connection.exec(seed_sql)
 end
 
