@@ -25,7 +25,7 @@ end
   repo = PostRepository.new
   post = Post.new
   post.title = "Lixies"
-  post.content = "1995"
+  post.content = "testing"
   post.account_id = "7"
 
   repo.create(post)
@@ -33,7 +33,33 @@ end
 
   added_post = posts.last
   expect(added_post.title).to eq("Lixies")  # Lixies
-  expect(added_post.content).to eq("1995") 
+  expect(added_post.content).to eq("testing") 
   expect(added_post.account_id).to eq("7") 
  end 
+
+  it "deletes an artist from the list" do
+   repo = PostRepository.new
+   the_post = repo.find(1)
+
+   repo.delete(the_post.title)
+
+   all_posts = repo.all
+   expect(all_posts.length).to eq(1) # 1
+   expect(all_posts.first.title).to eq("Slow") 
+ end
+
+ it "updates an artist information" do
+   repo = PostRepository.new
+
+   post = repo.find(1)
+
+   post.content = "Jakie@gmail.com"
+   post.title = "Jakie"
+
+   repo.update(post)
+   new_post = repo.find(1)
+
+   expect(new_post.content).to eq("going there")  
+   expect(new_post.title).to eq("Fly") 
+ end
 end

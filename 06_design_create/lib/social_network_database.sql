@@ -1,10 +1,7 @@
 DROP TABLE IF EXISTS "public"."posts";
--- This script only contains the table creation statements and does not fully represent the table in the database. It's still missing: indices, triggers. Do not use it as a backup.
 
--- Sequence and defined type
 CREATE SEQUENCE IF NOT EXISTS posts_id_seq;
 
--- Table Definition
 CREATE TABLE "public"."posts" (
     "id" SERIAL,
     "title" text,
@@ -14,12 +11,9 @@ CREATE TABLE "public"."posts" (
 );
 
 DROP TABLE IF EXISTS "public"."accounts";
--- This script only contains the table creation statements and does not fully represent the table in the database. It's still missing: indices, triggers. Do not use it as a backup.
 
--- Sequence and defined type
 CREATE SEQUENCE IF NOT EXISTS accounts_id_seq;
 
--- Table Definition
 CREATE TABLE "public"."accounts" (
     "id" SERIAL,
     "username" text,
